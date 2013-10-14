@@ -182,11 +182,20 @@
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2>Today</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/ecmascript-standard-frontpage-683x383.png" alt="ECMAScript 5.1 Specification" style="width: 683px; height: 383px;">
+    </article>
+  </slide>
+
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>The type system</h2>
-      <!--<h3>Subtitle Placeholder</h3>-->
+      <h3>(it's quite simple)</h3>
     </hgroup>
   </slide>
 
@@ -524,8 +533,28 @@ map(square, [1, 2]);
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Bad parts</h2>
-      <h3>Scoping, Global variables, and plenty more</h3>
+      <h3>Global variables, Scoping, and plenty more</h3>
     </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Global variables</h2>
+    </hgroup>
+    <article>
+      <p>It's far too easy to create global variables!</p>
+      <pre class="prettyprint" data-lang="javascript">
+var myFunction = function() {
+    global1 = 1;
+    var nonGlobal = "I only exist inside myFunction";
+}
+var global2 = 2;
+window.global3 = 3;
+</pre>
+      <p><code>global1</code> is global because we forgot <code>var</code></p>
+      <p><code>global2</code> is global because we declared it outside of a function or object</p>
+      <p><code>global3</code> is global because we added it to the global web browser <code>window</code> object</p>
+    </article>
   </slide>
 
   <slide class="segue dark nobackground">

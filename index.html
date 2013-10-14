@@ -270,7 +270,7 @@ var escaping = 'It\'s a glorious day!';
       <h2>More on objects</h2>
     </hgroup>
     <article>
-      <p>Containers of name/value pairs</p>
+      <p>Containers of properties that are name/value pairs</p>
       <p>Names can be any String</p>
       <p>Values can be any expression</p>
       <p>Mutable</p>
@@ -287,7 +287,7 @@ var escaping = 'It\'s a glorious day!';
         <p>Simple:</p>
         <pre class="prettyprint" data-lang="javascript">
 var empty = {};
-var simple = { 'name': 'value' };
+var simple = { 'name': 'value', 'name2': 'value2' };
 </pre>
       </div>
       <div>
@@ -341,11 +341,34 @@ numbers.length;
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Interesting parts</h2>
-      <!--<h3>Subtitle Placeholder</h3>-->
+      <h3>Truthiness, prototypal inheritance</h3>
     </hgroup>
   </slide>
 
   <slide>
+    <hgroup>
+      <h2>Truthy and falsy</h2>
+    </hgroup>
+    <article>
+      <p>All expressions are either <em>truthy</em> or <em>falsy</em>.</p>
+      <p>This can be used in conditional expressions:</p>
+      <pre class="prettyprint" data-lang="javascript">
+if (someVariable) {
+    console.log("<b>code in here only executes if someVariable is truthy</b>");
+}
+</pre>
+      <p>Can be used as a simple check for null, undefined, NaN and more.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>All other expressions are truthy.</li>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
       <h2>Falsy values</h2>
     </hgroup>
@@ -359,7 +382,7 @@ numbers.length;
         </thead>
         <tbody>
           <tr>
-            <td><code>0</code></td>
+            <td><code>0</code> (zero)</td>
             <td>Number</td>
           </tr>
           <tr>
@@ -384,7 +407,36 @@ numbers.length;
           </tr>
         </tbody>
       </table>
-      <p> All other values are truthy.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>JavaScript has objects but not classes (!)</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Prototypal inheritance</h2>
+    </hgroup>
+    <article>
+      <p>A new object can inherit properties of an existing object.</p>
+      <p>Example: Arrays inherit properties of the Array prototype object, such as <code>length</code></p>
+      <pre class="prettyprint" data-lang="javascript">
+var parent = {
+    name: "Alice",
+    greet: function() {
+        console.log("Hello " + this.name);
+    }
+};
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+var child = Object.create(parent);
+child.name = "Bob";
+child.greet();  // prints "Hello Bob" to the console
+</pre>
     </article>
   </slide>
 
@@ -392,8 +444,65 @@ numbers.length;
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Awesome parts</h2>
-      <!--<h3>Subtitle Placeholder</h3>-->
+      <h3>First class functions, Object literals</h3>
     </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>I write better JavaScript code the more &quot;functional&quot; I make it.</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>More on functions</h2>
+    </hgroup>
+    <article>
+      <p>Functions are objects and can be assigned to variables.</p>
+      <pre class="prettyprint" data-lang="javascript">
+var simpleFunction = function() {
+    console.log("Hello World");
+};
+</pre>
+      <p>This code doesn't print "Hello World" to the console, it only defines the function.</p>
+      <p>We can also pass functions as arguments to other functions.</p>
+      <p>And a function can return a function as output.</p>
+      <pre class="prettyprint" data-lang="javascript">
+simpleFunction();  // prints "Hello World" to the console
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Functions as arguments</h2>
+    </hgroup>
+    <article class="build">
+      <div>
+        <!--<p>Definition:</p>-->
+        <pre class="prettyprint" data-lang="javascript">
+var map = function(map_function, numbers_array) {
+    var result = [];
+    for (var i = 0; i < numbers_array.length; i++) {
+        result.push(map_function(numbers_array[i]));
+    };
+    return result;
+};
+</pre>
+      </div>
+      <div>
+        <p>Usage:</p>
+        <pre class="prettyprint" data-lang="javascript">
+var square = function(num) {
+    return num * num;
+}
+map(square, [1, 2]);
+>> [1, 4]
+</pre>
+      </div>
+    </article>
   </slide>
 
   <slide class="segue dark nobackground">
@@ -408,11 +517,19 @@ numbers.length;
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Bad parts</h2>
-      <!--<h3>Subtitle Placeholder</h3>-->
+      <h3>Scoping, Global variables, and plenty more</h3>
     </hgroup>
   </slide>
 
   <slide class="segue dark nobackground">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>There are plenty of terrible JavaScript books and online articles.</li>
+          <li>JQuery plugins: great examples of terrible code</li>
+        </ul>
+      </section>
+    </aside>
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Where do I start?</h2>

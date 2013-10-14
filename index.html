@@ -137,6 +137,37 @@
     </article>
   </slide>
 
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>A brief history of JavaScript</h2>
+      <!--<h3>Subtitle Placeholder</h3>-->
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>In the beginning</h2>
+    </hgroup>
+    <article>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>The type system</h2>
+      <!--<h3>Subtitle Placeholder</h3>-->
+    </hgroup>
+  </slide>
+
   <slide>
     <aside class="note">
       <section>
@@ -154,7 +185,49 @@
       <p>Boolean (<code>true</code> and <code>false</code>)</p>
       <p>Null (<code>null</code>)</p>
       <p>Undefined (<code>undefined</code>)</p>
-      <p>Object</p>
+      <p>Object (more on these later)</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Number usage</h2>
+    </hgroup>
+    <article class="build">
+      <pre class="prettyprint" data-lang="javascript">
+var aNumber = 1;
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+var anotherNumber = 0.1;
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+0.1 + 0.2;
+>> 0.30000000000000004
+</pre>
+      <img src="images/emoticon_surprised-395x359.jpg" alt="Surprised" style="width: 158px; height: 144px;">
+      <!--<img src="images/emoticon_shocked-300x300.png" alt="Shocked" style="width: 150px; height: 150px;">-->
+      <p>JavaScript uses binary floating point arithmetic (IEEE 754).</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>String usage</h2>
+    </hgroup>
+    <article class="build">
+      <pre class="prettyprint" data-lang="javascript">
+var empty = '';
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+var helloWorld = 'Hello World!';
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+var escaping = 'It\'s a glorious day!';
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+1 + '2';
+>> '12'
+</pre>
     </article>
   </slide>
 
@@ -185,18 +258,67 @@
 
   <slide>
     <hgroup>
-      <h2>Some objects</h2>
+      <h2>Object usage</h2>
     </hgroup>
-    <article>
-      <dl>
-        <dt>Empty:</dt> <dd><code>var empty = {};</code></dd><br/>
-        <dt>Simple:</dt> <dd><code>var simple = { 'name': 'value' };</code></dd><br/>
-        <dt>Mutate:</dt> <dd><code>simple['another name'] = 'another value';</code></dd>
-      </dl>
-      <!--<p>Empty: <code>var empty = {};</code></p>-->
-      <!--<p>Simple: <code>var simple = { 'name': 'value' };</code></p>-->
-      <!--<p>Mutate: <code>simple['another name'] = 'another value';</code></p>-->
+    <article class="build">
+      <div>
+        <p>Simple:</p>
+        <pre class="prettyprint" data-lang="javascript">
+var empty = {};
+var simple = { 'name': 'value' };
+</pre>
+      </div>
+      <div>
+        <p>Mutate:</p>
+        <pre class="prettyprint" data-lang="javascript">
+simple['another name'] = 'another value';
+</pre>
+      </div>
+      <div>
+        <p>Query:</p>
+        <pre class="prettyprint" data-lang="javascript">
+simple['name'];  // or simple.name;
+>> 'value'
+</pre>
+      </div>
     </article>
+  </slide>
+
+    <slide>
+    <hgroup>
+      <h2>Arrays</h2>
+    </hgroup>
+        <article class="build">
+      <div>
+        <p>Simple:</p>
+        <pre class="prettyprint" data-lang="javascript">
+var empty = [];
+var numbers = [ 'zero', 'one' ];
+</pre>
+      </div>
+      <div>
+        <p>Mutate:</p>
+        <pre class="prettyprint" data-lang="javascript">
+numbers.push('two');   // numbers is now [ 'zero', 'one', 'two' ]
+numbers[0] = 'zilch';  // numbers is now [ 'zilch', 'one', 'two' ]
+</pre>
+      </div>
+      <div>
+        <p>Query:</p>
+        <pre class="prettyprint" data-lang="javascript">
+numbers[1];
+>> 'one'
+</pre>
+      </div>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Interesting parts</h2>
+      <!--<h3>Subtitle Placeholder</h3>-->
+    </hgroup>
   </slide>
 
   <slide>
@@ -238,185 +360,58 @@
           </tr>
         </tbody>
       </table>
+      <p> All other values are truthy.</p>
     </article>
   </slide>
 
-  <slide>
-    <article>
-      <iframe data-src="http://http2.github.io/http2-spec/"></iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>No information on Safari</li>
-        </ul>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Who supports it?</h2>
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Awesome parts</h2>
+      <!--<h3>Subtitle Placeholder</h3>-->
     </hgroup>
-    <article>
-      <p><strong>Browsers:</strong> <br>Chrome (desktop, iOS, Andriod), Firefox, Opera, IE 11+ (!)</p>
-      <p><strong>Websites:</strong> <br>Google, Facebook, Twitter, GitHub, etc.</p>
-      <p><strong>Application servers/platforms:</strong> <br>Apache (mod_spdy), Nginx, Ruby, Python, NodeJS, Java (Jetty and Netty), etc.</p>
-    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Surprising parts</h2>
+      <h3>Concurrency</h3>
+    </hgroup>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Bad parts</h2>
+      <!--<h3>Subtitle Placeholder</h3>-->
+    </hgroup>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Where do I start?</h2>
+      <!--<h3>Subtitle Placeholder</h3>-->
+    </hgroup>
   </slide>
 
   <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>Browsers open up to 6 connections (was 2)</li>
-          <li>These connections take time to warm up</li>
-          <li>TCP slow start important: Initial congestion window (init_cwnd)</li>
-          <li>Redundant User-Agent, etc.</li>
-        </ul>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>What is wrong with HTTP 1.1?</h2>
-    </hgroup>
-    <article>
-      <p>Not designed to minimise latency:</p>
-      <ul>
-        <li>Single request per connection</li>
-        <li>Only client-initiated requests</li>
-        <li>Headers are not compressed</li>
-        <li>Optional data compression</li>
-        <li>Redundant headers</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide class="segue dark quote nobackground">
-    <aside class="twbar right bottom"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <article class="flexbox vleft auto-fadein">
-      <q>
-        SPDY's purpose is to improve end-user perceived latency.
-      </q>
-    </article>
-  </slide>
-
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>It's binary!</li>
-          <li>Not much support for request prioritisation.</li>
-        </ul>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>How does SPDY achieve that?</h2>
-    </hgroup>
-    <article>
-      <ul class="build">
-        <li>Multiplexing requests on a single connection</li>
-        <li>Header compression</li>
-        <li>Server push </li>
-        <li>Server hint</li>
-        <li>Request prioritisation</li>
-      </ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>The Protocol Stack</h2>
-    </hgroup>
     <article class="flexbox vcenter">
-      <img src="images/spdy-protocol-stack.png" alt="SPDY protocol stack" title="Description" width="150%">
-      <footer class="source">source: More Bandwidth Doesn’t Matter (much), Mike Belshe</footer>
+      <img src="images/javascript-good-parts-cover-500x656.jpg" alt="JavaScript: The Good Parts book cover" style="width: 500px; height: 656px;">
     </article>
   </slide>
 
   <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>Browsers open up to 6 connections (used to be 2)</li>
-          <li>These connections take time to warm up</li>
-          <li>TCP slow start important: Initial congestion window (init_cwnd)</li>
-        </ul>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>SPDY Multiplexing</h2>
-    </hgroup>
     <article class="flexbox vcenter">
-      <object data="images/spdy-multiplexing.svg" type="image/svg+xml" width="700px"></object>
-    </article>
-  </slide>
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>CRIME attack: Compression and encryption don't go well together.</li>
-          <li>Compression means more information is leaked. Not great for sensitive headers like session cookies.</li>
-        </ul>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Header Compression</h2>
-    </hgroup>
-    <article>
-      <p>Fast zlib compression</p>
-      <p>Cookies are not compressed (CRIME attack)</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Server push</h2>
-      <h3>Shove resources down browsers's throats</h3>
-    </hgroup>
-    <article>
-      <pre class="prettyprint" data-lang="javascript">
-<b>if (request.url === '/index.html'</b> && response.push) {
-  <b>response.push('/jquery.js'</b>, {'Content-Type': 'text/javascript'}, 
-      function(err, stream) {
-        stream.end(fs.readFileSync('/jquery.js'));
-      });
-}
-</pre>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Server hint</h2>
-      <h3>More polite than push</h3>
-    </hgroup>
-    <article>
-      <p>Request:</p>
-      <pre class="prettyprint">
-<b>GET /index.html</b> HTTP/1.1
-Host: www.server.com
-</pre>
-      <p>Response:</p>
-      <pre class="prettyprint">
-HTTP/1.1 200 OK
-Content-Type: text/html
-<b>Link: &lt;/jquery.js&gt;; rel=prefetch</b>
-</pre>
-    </article>
-  </slide>
-
-  <slide>
-    <article>
-      <iframe data-src="https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2"></iframe>
+      <img src="images/mozilla-developer-network-javascript-780x563.png" alt="Mozilla Developer Network: JavaScript" style="width: 780px; height: 563px;">
     </article>
   </slide>
 
   <slide class="thank-you-slide segue nobackground">
     <aside class="twbar right"><img src="images/tw_brackets_color_128x128.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>Let's code!</h2>
+      <h2>Thank you!</h2>
     </article>
     <p class="auto-fadein" data-config-contact>
       <!-- populated from slide_config.json -->
@@ -429,13 +424,12 @@ Content-Type: text/html
     </hgroup>
     <article>
       <ul>
-        <li>Mike Belshe: <a href="https://docs.google.com/a/chromium.org/viewer?a=v&pid=sites&srcid=Y2hyb21pdW0ub3JnfGRldnxneDoxMzcyOWI1N2I4YzI3NzE2">More Bandwidth Doesn’t Matter (Much)</a></li>
-        <li>IETF Draft: <a href="http://http2.github.io/http2-spec/">Hypertext Transfer Protocol version 2.0</a></li>
-        <li>Chris Strom: <a href="http://pragprog.com/book/csspdy/the-spdy-book">The SPDY Book</a></li>
-        <li><a href="https://github.com/indutny/node-spdy">NodeJS SPDY module</a></li>
-        <li><a href="https://github.com/igrigorik/spdy">Ruby SPDY gem</a></li>
-        <li><a href="http://www.eclipse.org/jetty/documentation/current/spdy.html">Jetty's SPDY modules</a></li>
-        <li>Chromium: <a href="http://www.chromium.org/spdy">SPDY resources</a></li>
+        <li>Douglas Crockford: <a href="http://shop.oreilly.com/product/9780596517748.do">JavaScript: The Good Parts</a></li>
+        <li>ECMA-262: <a href="http://www.ecma-international.org/ecma-262/5.1/">ECMAScript Language Specification, 5.1 Edition</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Mozilla Developer Network: JavaScript</a></li>
+        <li>Michael Fogus: <a href="http://shop.oreilly.com/product/0636920028857.do">Functional JavaScript</a></li>
+        <li>Trevor Burnham: <a href="http://pragprog.com/book/tbajs/async-javascript">Async JavaScript</a></li>
+        <li>Charles Severance: <a href="http://www.computer.org/csdl/mags/co/2012/02/mco2012020007.html">JavaScript: Designing a Language in 10 Days</a>, IEEE Computer, Feb 2012</li>
       </ul>
     </article>
   </slide>

@@ -580,6 +580,75 @@ map(square, [1, 2]);
     </hgroup>
   </slide>
 
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Simple concurrency model based on an event loop</li>
+          <li>Parallellism is supported in browsers via iframes and web workers. Not covered here.</li>
+          <li>Browser event: key is pressed, mouse hovers over area, etc.</li>
+          <li>Elsewhere (NodeJS): <code>setTimeout()</code>, <code>setInterval()</code>, etc.</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Concurrency: the event loop</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+while (queue.waitForEventMessage()) {
+  queue.processNextEventMessage();
+}
+</pre>
+      <p>Each event message is processed completely before any other message is processed.</p>
+      <p>No multi-threading support, as in C, Java, others.</p>
+      <p>How are event messages added to the queue?</p>
+      <ul>
+        <li>In a browser: When a user interface event happens and an event listener is is attached.</li>
+        <li>Elsewhere: <code>setTimeout()</code> and friends</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Not 1, 2, 3</li>
+          <li>There's only one variable named <code>i</code>, which is global.</li>
+          <li>After the loop, <code>i === 4</code>, because it was incremented until it failed the loop condition.</li>
+          <li>New event messages are not processed until the current executing event is completed.</li>
+          <li>That last one is a surprise!</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Event loop test</h2>
+    </hgroup>
+    <article>
+      <p><code>setTimeout(callbackFunction, delayMillis)</code></p>
+      <p>Adds <code>callbackFunction</code> as a message to the event queue, with a delay.</p>
+      <div class="build">
+        <div>
+          <p>Quiz:</p>
+          <pre class="prettyprint" data-lang="javascript">
+for (var i = 1; i <= 3; i++) {
+    setTimeout(function() { console.log(i); }, 0);
+}
+</pre>
+        </div>
+        <div>
+          <p>Solution:</p>
+          <pre class="prettyprint" data-lang="javascript">
+>> 4
+   4
+   4
+</pre>
+          </div>
+      </div>
+    </article>
+  </slide>
+
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup>
@@ -614,13 +683,26 @@ window.global3 = 3;
     </hgroup>
     <article>
       <p>JavaScript uses C's block syntax (curly braces <code>{}</code>), but there's no block scope.</p>
-      <p>There are only two scopes: global and function scope</p>
+      <p>There are only two scopes: global scope and function scope.</p>
+      <p>A variable defined without <code>var</code> is global. Never do this!</p>
+      <p>A variable defined outside any function is global.</p>
+      <p>A variable defined in a function only exists in that function.</p>
     </article>
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>There are two variables called <code>first</code></li>
+          <li>One is global scoped, the other is function scoped.</li>
+          <li>In the scopeTest function, the function scoped variable <code>first</code> <em>hides</em> the globally scoped variable <code>first</code></li>
+          <li><code>second</code> is scoped to the <code>scopeTest()</code> function, <em>not</em> the if statement block.</li>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
-      <h2>Scoping brain teaser</h2>
+      <h2>Scoping test</h2>
     </hgroup>
     <article class="build">
       <pre class="prettyprint" data-lang="javascript">

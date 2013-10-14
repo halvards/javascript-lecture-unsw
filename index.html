@@ -127,7 +127,7 @@
       <p>Interesting: Truthiness, Prototypal inheritance</p>
       <p>Awesome: First class functions, Object literals</p>
       <p>Surprising: Concurrency</p>
-      <p>Bad: Scoping, Global variables, and plenty more</p>
+      <p>Bad: Global variables, Scoping, and plenty more</p>
     </article>
   </slide>
 
@@ -187,7 +187,16 @@
       <h2>Today</h2>
     </hgroup>
     <article class="flexbox vcenter">
-      <img src="images/ecmascript-standard-frontpage-683x383.png" alt="ECMAScript 5.1 Specification" style="width: 683px; height: 383px;">
+      <img src="images/ecmascript-5-standard-frontpage-683x383.png" alt="ECMAScript 5.1 Specification" style="width: 854px; height: 479px;">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Tomorrow</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/ecmascript-6-draft-standard-frontpage-980x605.png" alt="ECMAScript 6 Draft Specification" style="width: 784px; height: 484px;">
     </article>
   </slide>
 
@@ -543,6 +552,26 @@ map(square, [1, 2]);
     </hgroup>
     <article>
       <p>It's far too easy to create global variables!</p>
+      <pre class="prettyprint" data-lang="javascript">
+var myFunction = function() {
+    global1 = 1;
+    var nonGlobal = "I only exist inside myFunction";
+}
+var global2 = 2;
+window.global3 = 3;
+</pre>
+      <p><code>global1</code> is global because we forgot <code>var</code></p>
+      <p><code>global2</code> is global because we declared it outside of a function or object</p>
+      <p><code>global3</code> is global because we added it to the global web browser <code>window</code> object</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Scoping</h2>
+    </hgroup>
+    <article>
+      <p>JavaScript uses C's block syntax (curly braces <code>{}</code>), but there's no block scope.</p>
       <pre class="prettyprint" data-lang="javascript">
 var myFunction = function() {
     global1 = 1;

@@ -31,7 +31,7 @@
   <slide class="title-slide segue nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
@@ -57,12 +57,30 @@
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>The usual suspects</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Where can we use JavaScript?</h2>
+    </hgroup>
     <article class="flexbox vcenter">
       <img src="images/browser_logos-1439x269.png" alt="Browser logos" style="width: 100%;">
     </article>
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>This one is a lot of fun.</li>
+          <li>And a much better way to learn JavaScript than in a browser!</li>
+        </ul>
+      </section>
+    </aside>
     <article class="flexbox vcenter">
       <img src="images/nodejs_logo-800x215.png" alt="NodeJS logo" style="width: 800px; height: 215px;">
     </article>
@@ -94,7 +112,7 @@
 
   <slide class="segue dark quote nobackground">
     <aside class="twbar right bottom"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <article class="flexbox vleft auto-fadein">
+    <article class="flexbox vleft">
       <q>Any application that can be written in JavaScript, will eventually be written in JavaScript.</q>
       <div class="author">
         Atwood's Law<br>
@@ -105,7 +123,7 @@
 
   <slide>
     <hgroup>
-      <h2>Agenda</h2>
+      <h2>Today's agenda</h2>
     </hgroup>
     <article>
       <p>Some boring bits</p>
@@ -119,7 +137,7 @@
 
   <slide>
     <hgroup>
-      <h2>Agenda in detail</h2>
+      <h2>Today's agenda in detail</h2>
     </hgroup>
     <article>
       <p>Boring: A brief history of JavaScript</p>
@@ -133,9 +151,9 @@
 
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h2>A brief history of JavaScript</h2>
-      <!--<h3>Subtitle Placeholder</h3>-->
+      <h3>(actually not that boring)</h3>
     </hgroup>
   </slide>
 
@@ -155,9 +173,10 @@
     </hgroup>
     <article>
       <p>In 1995, Netscape Navigator was the dominant web browser, but Microsoft was making inroads with Windows 95.</p>
-      <p>Netscape hired Brendan Eich in April 1995 and told him he had ten days to design a programming language.</p>
       <p>Netscape considered the web browser a new form of distributed OS, but it needed a lightweight scripting language.</p>
-      <p>Brendan created Mocha, later renamed to LiveScript, borrowing ideas from LISP, Smalltalk, Self and C. Beta was launched in September 1995.</p>
+      <p>They hired Brendan Eich in April 1995 and told him he had ten days to design a programming language.</p>
+      <p>Brendan created Mocha, later renamed to LiveScript, borrowing ideas from LISP, Smalltalk, Self and C.</p>
+      <p>Netscape Navigator 2.0 Beta was released in September 1995.</p>
     </article>
   </slide>
 
@@ -175,7 +194,8 @@
       <h2>So why is it called JavaScript?</h2>
     </hgroup>
     <article>
-      <p>Java was popular at the time, so marketing changed the name to JavaScript in December 1995.</p>
+      <p>Java had just been released and was getting a lot of attention.</p>
+      <p>Netscape marketing changed the name from LiveScript to JavaScript in December 1995.</p>
       <p>Netscape Navigator 2.0 with JavaScript support launched in March 1996.</p>
       <p>Netscape delivered JavaScript to Ecma International for standardisation.</p>
       <p>June 1997: First edition of ECMA-262 ECMAScript Language Specification released.</p>
@@ -202,7 +222,7 @@
 
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h2>The type system</h2>
       <h3>(it's quite simple)</h3>
     </hgroup>
@@ -213,6 +233,7 @@
       <section>
         <ul>
           <li>This looks easy!</li>
+          <li>Objects: more on these later</li>
         </ul>
       </section>
     </aside>
@@ -225,7 +246,7 @@
       <p>Boolean (<code>true</code> and <code>false</code>)</p>
       <p>Null (<code>null</code>)</p>
       <p>Undefined (<code>undefined</code>)</p>
-      <p>Object (more on these later)</p>
+      <p>Object (a few types)</p>
     </article>
   </slide>
 
@@ -241,10 +262,18 @@ var aNumber = 1;
 var anotherNumber = 0.1;
 </pre>
       <pre class="prettyprint" data-lang="javascript">
+1 / 0;
+>> Infinity
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+Math.sqrt(-1);
+>> NaN  // not a number
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
 0.1 + 0.2;
 >> 0.30000000000000004
 </pre>
-      <img src="images/emoticon_surprised-395x359.jpg" alt="Surprised" style="width: 158px; height: 144px;">
+      <!--<img src="images/emoticon_surprised-395x359.jpg" alt="Surprised" style="width: 158px; height: 144px;">-->
       <!--<img src="images/emoticon_shocked-300x300.png" alt="Shocked" style="width: 150px; height: 150px;">-->
       <p>JavaScript uses binary floating point arithmetic (IEEE 754).</p>
     </article>
@@ -262,16 +291,28 @@ var empty = '';
 var helloWorld = 'Hello World!';
 </pre>
       <pre class="prettyprint" data-lang="javascript">
-var escaping = 'It\'s a glorious day!';
+var escaping = 'It<b>\'</b>s a glorious day!';
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+'abc' + 'def';
+>> 'abcdef'
 </pre>
       <pre class="prettyprint" data-lang="javascript">
 1 + '2';
 >> '12'
 </pre>
+      <p>JavaScript does some type coercion (Number to String here).</p>
     </article>
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>I will not cover regular expressions here</li>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
       <h2>Objects</h2>
     </hgroup>
@@ -357,7 +398,7 @@ numbers.length;
 
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h2>Interesting parts</h2>
       <h3>Truthiness, prototypal inheritance</h3>
     </hgroup>
@@ -375,7 +416,7 @@ if (someVariable) {
     console.log("<b>code in here only executes if someVariable is truthy</b>");
 }
 </pre>
-      <p>Can be used as a simple check for null, undefined, NaN and more.</p>
+      <p>Can be used as a simple check for <code>null</code>, <code>undefined</code>, <code>NaN</code> and more.</p>
     </article>
   </slide>
 
@@ -444,23 +485,23 @@ if (someVariable) {
       <p>Example: Arrays inherit properties of the Array prototype object, such as <code>length</code></p>
       <pre class="prettyprint" data-lang="javascript">
 var parent = {
-    name: "Alice",
-    greet: function() {
+    'name': "Alice",
+    'greet': function() {
         console.log("Hello " + this.name);
     }
 };
 </pre>
       <pre class="prettyprint" data-lang="javascript">
 var child = Object.create(parent);
-child.name = "Bob";
-child.greet();  // prints "Hello Bob" to the console
+child['name'] = "Bob";
+child.greet();  // prints <b>"Hello Bob"</b> to the console
 </pre>
     </article>
   </slide>
 
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h2>Awesome parts</h2>
       <h3>First class functions, Object literals</h3>
     </hgroup>
@@ -533,7 +574,7 @@ map(square, [1, 2]);
 
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h2>Surprising parts</h2>
       <h3>Concurrency</h3>
     </hgroup>
@@ -541,7 +582,7 @@ map(square, [1, 2]);
 
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h2>Bad parts</h2>
       <h3>Global variables, Scoping, and plenty more</h3>
     </hgroup>
@@ -615,7 +656,7 @@ console.log("second=" + second);
       </section>
     </aside>
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup class="auto-fadein">
+    <hgroup>
       <h2>Where do I start?</h2>
       <!--<h3>Subtitle Placeholder</h3>-->
     </hgroup>
@@ -633,27 +674,34 @@ console.log("second=" + second);
     </article>
   </slide>
 
+  <slide>
+    <article class="flexbox vcenter">
+      <img src="images/nodejs_logo-800x215.png" alt="NodeJS logo" style="width: 800px; height: 215px;">
+    </article>
+  </slide>
+
   <slide class="thank-you-slide segue nobackground">
     <aside class="twbar right"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <article class="flexbox vleft auto-fadein">
+    <article class="flexbox vleft">
       <h2>Thank you!</h2>
     </article>
-    <p class="auto-fadein" data-config-contact>
+    <!--<p class="auto-fadein" data-config-contact>-->
+    <p data-config-contact>
       <!-- populated from slide_config.json -->
     </p>
   </slide>
 
   <slide>
     <hgroup>
-     <h2>References</h2>
+      <h2>References</h2>
     </hgroup>
     <article>
       <ul>
-        <li>Douglas Crockford: <a href="http://shop.oreilly.com/product/9780596517748.do">JavaScript: The Good Parts</a></li>
+        <li>Douglas Crockford: <a href="http://shop.oreilly.com/product/9780596517748.do">JavaScript: The Good Parts</a>, O'Reilly</li>
         <li>ECMA-262: <a href="http://www.ecma-international.org/ecma-262/5.1/">ECMAScript Language Specification, 5.1 Edition</a></li>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Mozilla Developer Network: JavaScript</a></li>
-        <li>Michael Fogus: <a href="http://shop.oreilly.com/product/0636920028857.do">Functional JavaScript</a></li>
-        <li>Trevor Burnham: <a href="http://pragprog.com/book/tbajs/async-javascript">Async JavaScript</a></li>
+        <li>Michael Fogus: <a href="http://shop.oreilly.com/product/0636920028857.do">Functional JavaScript</a>, O'Reilly</li>
+        <li>Trevor Burnham: <a href="http://pragprog.com/book/tbajs/async-javascript">Async JavaScript</a>, Pragmatic Bookshelf</li>
         <li>Charles Severance: <a href="http://www.computer.org/csdl/mags/co/2012/02/mco2012020007.html">JavaScript: Designing a Language in 10 Days</a>, IEEE Computer, Feb 2012</li>
         <li>Paul Krill: <a href="http://www.infoworld.com/d/developer-world/javascript-creator-ponders-past-future-704">JavaScript creator ponders past, future</a>, 23 June 2008</li>
       </ul>

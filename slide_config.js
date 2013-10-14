@@ -18,8 +18,8 @@ var SLIDE_CONFIG = {
 
   // Author information
   presenters: [{
-    name: 'Halvard Skogsrud',
-    company: 'ThoughtWorks',
+    name: 'Dr Halvard Skogsrud',
+    company: 'Lead Consultant, ThoughtWorks',
     email: 'halvard@skogsrud.com',
     twitter: '@halvards',
     github: 'http://github.com/halvards'

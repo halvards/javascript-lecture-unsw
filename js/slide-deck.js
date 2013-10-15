@@ -315,7 +315,7 @@ SlideDeck.prototype.loadConfig_ = function(config) {
   }
 
   if (settings.title) {
-    document.title = settings.title.replace(/<br\/?>/, ' ') + ' - ThoughtWorks XConf';
+    document.title = settings.title.replace(/<br\/?>/, ' ') + ' - ThoughtWorks';
     document.querySelector('[data-config-title]').innerHTML = settings.title;
   }
 

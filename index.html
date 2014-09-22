@@ -130,8 +130,8 @@
       <p>Something boring</p>
       <p>Something necessary</p>
       <p>Something interesting</p>
-      <p>Something awesome</p>
       <p>Something surprising</p>
+      <p>Something awesome</p>
       <p>Something bad</p>
     </article>
   </slide>
@@ -144,9 +144,9 @@
       <p>Boring: A brief history of JavaScript</p>
       <p>Necessary: The type system</p>
       <p>Interesting: Truthiness, Prototypal inheritance</p>
-      <p>Awesome: First class functions, Object literals</p>
-      <p>Surprising: Concurrency</p>
-      <p>Bad: Global variables, Scoping, and plenty more</p>
+      <p>Surprising: Scoping, Concurrency</p>
+      <p>Awesome: First class functions, Object literals, Closures</p>
+      <p>Bad: Global variables, Equals, and more</p>
     </article>
   </slide>
 
@@ -503,8 +503,163 @@ child.greet();  // prints <b>"Hello Bob"</b> to the console
   <slide class="segue dark nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup>
+      <h2>Surprising parts</h2>
+      <h3>Scoping, Concurrency</h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Scoping</h2>
+    </hgroup>
+    <article>
+      <p>JavaScript uses C's block syntax (curly braces <code>{}</code>), but there's no block scope.</p>
+      <p>There are only two scopes: global scope and function scope.</p>
+      <p>A variable defined without <code>var</code> is global. Never do this!</p>
+      <p>A variable defined outside any function is global.</p>
+      <p>A variable defined in a function only exists in that function.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Java vs JavaScript</h2>
+    </hgroup>
+    <article class="build">
+      <pre class="prettyprint" data-lang="java">
+void mymethod() {
+    if (condition == true) {
+        String mystring = "hello";
+    }
+    // mystring is no longer in scope
+}
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+var myfunc = function () {
+    if (condition === true) {
+        var mystring = "hello";
+    }
+    // mystring = "hello"
+}
+// mystring is no longer in scope
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>There are two variables called <code>first</code></li>
+          <li>One is global scoped, the other is function scoped.</li>
+          <li>In the scopeTest function, the function scoped variable <code>first</code> <em>hides</em> the globally scoped variable <code>first</code></li>
+          <li><code>second</code> is scoped to the <code>scopeTest()</code> function, <em>not</em> the if statement block.</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Scoping test</h2>
+    </hgroup>
+    <article class="build">
+      <pre class="prettyprint" data-lang="javascript">
+var first = 0;
+var scopeTest = function() {
+  var first = 1;
+  console.log("first=" + first);
+  if (true) {
+      var second = 2;
+  }
+  console.log("second=" + second);
+};
+scopeTest();
+console.log("first=" + first);
+console.log("second=" + second);
+</pre>
+      <pre class="prettyprint" data-lang="javascript">
+>> first=1
+   second=2
+   first=0
+   ReferenceError: second is not defined
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Simple concurrency model based on an event loop</li>
+          <li>Parallellism is supported in browsers via iframes and web workers. Not covered here.</li>
+          <li>Browser event: key is pressed, mouse hovers over area, etc.</li>
+          <li>Elsewhere (NodeJS): <code>setTimeout()</code>, <code>setInterval()</code>, etc.</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Concurrency: the event loop</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+while (queue.waitForEventMessage()) {
+  queue.processNextEventMessage();
+}
+</pre>
+      <p>Each event message is processed completely before any other message is processed.</p>
+      <p>No multi-threading support, as in C, Java, others.</p>
+      <p>How are event messages added to the queue?</p>
+      <ul>
+        <li>In a browser: When a user interface event happens and an event listener is is attached.</li>
+        <li>Elsewhere: <code>setTimeout()</code> and friends</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Not 1, 2, 3</li>
+          <li>There's only one variable named <code>i</code>, which is global.</li>
+          <li>After the loop, <code>i === 4</code>, because it was incremented until it failed the loop condition.</li>
+          <li>New event messages are not processed until the current executing event is completed.</li>
+          <li>That last one is a surprise!</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Event loop test</h2>
+    </hgroup>
+    <article>
+      <p><code>setTimeout(callbackFunction, delayMillis)</code></p>
+      <p>Adds <code>callbackFunction</code> as a message to the event queue, with a delay.</p>
+      <div class="build">
+        <div>
+          <pre class="prettyprint" data-lang="javascript">
+var counter = function() {
+    for (var i = 1; i <= 3; i++) {
+        setTimeout(function() { console.log(i); }, 0);
+    }
+}
+counter();
+</pre>
+        </div>
+        <div>
+          <p>Solution:</p>
+          <pre class="prettyprint" data-lang="javascript">
+>> 4
+   4
+   4
+</pre>
+          </div>
+      </div>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
+    <hgroup>
       <h2>Awesome parts</h2>
-      <h3>First class functions, Object literals</h3>
+      <h3>First class functions, Object literals, Closures</h3>
     </hgroup>
   </slide>
 
@@ -573,41 +728,34 @@ map(square, [1, 2]);
     </article>
   </slide>
 
-  <slide class="segue dark nobackground">
-    <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
-    <hgroup>
-      <h2>Surprising parts</h2>
-      <h3>Concurrency</h3>
-    </hgroup>
-  </slide>
-
   <slide>
     <aside class="note">
       <section>
         <ul>
-          <li>Simple concurrency model based on an event loop</li>
-          <li>Parallellism is supported in browsers via iframes and web workers. Not covered here.</li>
-          <li>Browser event: key is pressed, mouse hovers over area, etc.</li>
-          <li>Elsewhere (NodeJS): <code>setTimeout()</code>, <code>setInterval()</code>, etc.</li>
+          <li>This is very cool! Impress your friends.</li>
         </ul>
       </section>
     </aside>
     <hgroup>
-      <h2>Concurrency: the event loop</h2>
+      <h2>Closures</h2>
     </hgroup>
-    <article>
+    <article class="build">
+      <p>Inner functions can access variables of the functions they are defined within.</p>
       <pre class="prettyprint" data-lang="javascript">
-while (queue.waitForEventMessage()) {
-  queue.processNextEventMessage();
-}
+var outer = function() {
+    var outerVar = 'hello';
+
+    return {
+        inner: function() {
+            console.log(outerVar);
+        }
+    };
+};
+// outerVar is no longer in scope
+
+outer().inner();
+>> 'hello'
 </pre>
-      <p>Each event message is processed completely before any other message is processed.</p>
-      <p>No multi-threading support, as in C, Java, others.</p>
-      <p>How are event messages added to the queue?</p>
-      <ul>
-        <li>In a browser: When a user interface event happens and an event listener is is attached.</li>
-        <li>Elsewhere: <code>setTimeout()</code> and friends</li>
-      </ul>
     </article>
   </slide>
 
@@ -615,38 +763,32 @@ while (queue.waitForEventMessage()) {
     <aside class="note">
       <section>
         <ul>
-          <li>Not 1, 2, 3</li>
-          <li>There's only one variable named <code>i</code>, which is global.</li>
-          <li>After the loop, <code>i === 4</code>, because it was incremented until it failed the loop condition.</li>
-          <li>New event messages are not processed until the current executing event is completed.</li>
-          <li>That last one is a surprise!</li>
+          <li>No visibility modifiers in JavaScript, no public, private, etc.</li>
+          <li>So how do we achieve encapsulation?</li>
         </ul>
       </section>
     </aside>
     <hgroup>
-      <h2>Event loop test</h2>
+      <h2>Function closures as pseudo-classes</h2>
     </hgroup>
     <article>
-      <p><code>setTimeout(callbackFunction, delayMillis)</code></p>
-      <p>Adds <code>callbackFunction</code> as a message to the event queue, with a delay.</p>
-      <div class="build">
-        <div>
-          <p>Quiz:</p>
-          <pre class="prettyprint" data-lang="javascript">
-for (var i = 1; i <= 3; i++) {
-    setTimeout(function() { console.log(i); }, 0);
+      <pre class="prettyprint" data-lang="javascript">
+var counter = function() {
+    var value = 0;
+
+    return {
+        getValue: function() {
+            return value;
+        },
+        increment: function() {
+            value += 1;
+        }
+    };
 }
+
+var myCounter = counter();  // create an instance
 </pre>
-        </div>
-        <div>
-          <p>Solution:</p>
-          <pre class="prettyprint" data-lang="javascript">
->> 4
-   4
-   4
-</pre>
-          </div>
-      </div>
+      <p>Encapsulation: <code>value</code> can't be directly manipulated.</p>
     </article>
   </slide>
 
@@ -654,7 +796,7 @@ for (var i = 1; i <= 3; i++) {
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <hgroup>
       <h2>Bad parts</h2>
-      <h3>Global variables, Scoping, and plenty more</h3>
+      <h3>Global variables, Equals, and more</h3>
     </hgroup>
   </slide>
 
@@ -680,52 +822,22 @@ window.global3 = 3;
 
   <slide>
     <hgroup>
-      <h2>Scoping</h2>
+      <h2>Equals</h2>
     </hgroup>
     <article>
-      <p>JavaScript uses C's block syntax (curly braces <code>{}</code>), but there's no block scope.</p>
-      <p>There are only two scopes: global scope and function scope.</p>
-      <p>A variable defined without <code>var</code> is global. Never do this!</p>
-      <p>A variable defined outside any function is global.</p>
-      <p>A variable defined in a function only exists in that function.</p>
-    </article>
-  </slide>
+      <p>JavaScript has both <code>==</code> and <code>===</code> (as well as <code>!=</code> and <code>!==</code>)</p>
+      <p><code>==</code> performs type coercion when the arguments are not of the same type, using strange rules:</p>
+      <pre class="prettyprint" data-lang="javascript">
+0 == ''            // true
+'0' == ''          // true
+'' == '0'          // false
 
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>There are two variables called <code>first</code></li>
-          <li>One is global scoped, the other is function scoped.</li>
-          <li>In the scopeTest function, the function scoped variable <code>first</code> <em>hides</em> the globally scoped variable <code>first</code></li>
-          <li><code>second</code> is scoped to the <code>scopeTest()</code> function, <em>not</em> the if statement block.</li>
-        </ul>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Scoping test</h2>
-    </hgroup>
-    <article class="build">
-      <pre class="prettyprint" data-lang="javascript">
-var first = 0;
-var scopeTest = function() {
-    var first = 1;
-    console.log("first=" + first);
-    if (true) {
-        var second = 2;
-    }
-    console.log("second=" + second);
-};
-scopeTest();
-console.log("first=" + first);
-console.log("second=" + second);
+false == '0'       // true
+null == undefined  // true
+
+' \t\r\n ' == 0    // true
 </pre>
-      <pre class="prettyprint" data-lang="javascript">
->> first=1
-   second=2
-   first=0
-   ReferenceError: second is not defined
-</pre>
+      <p>Lesson: Use <code>===</code> and <code>!==</code></p>
     </article>
   </slide>
 
@@ -783,8 +895,7 @@ console.log("second=" + second);
         <li>Douglas Crockford: <a href="http://shop.oreilly.com/product/9780596517748.do">JavaScript: The Good Parts</a>, O'Reilly</li>
         <li>ECMA-262: <a href="http://www.ecma-international.org/ecma-262/5.1/">ECMAScript Language Specification, 5.1 Edition</a></li>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Mozilla Developer Network: JavaScript</a></li>
-        <li>Michael Fogus: <a href="http://shop.oreilly.com/product/0636920028857.do">Functional JavaScript</a>, O'Reilly</li>
-        <li>Trevor Burnham: <a href="http://pragprog.com/book/tbajs/async-javascript">Async JavaScript</a>, Pragmatic Bookshelf</li>
+        <li>Trevor Burnham: <a href="http://javascriptjabber.com/124-jsj-the-origin-of-javascript-with-brendan-eich/">The Origin of Javascript with Brendan Eich</a>, JavaScript Jabber, Episode 124, 3 Sept 2014</li>
         <li>Charles Severance: <a href="http://www.computer.org/csdl/mags/co/2012/02/mco2012020007.html">JavaScript: Designing a Language in 10 Days</a>, IEEE Computer, Feb 2012</li>
         <li>Paul Krill: <a href="http://www.infoworld.com/d/developer-world/javascript-creator-ponders-past-future-704">JavaScript creator ponders past, future</a>, 23 June 2008</li>
       </ul>

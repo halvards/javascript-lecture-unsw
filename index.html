@@ -484,6 +484,7 @@ if (someVariable) {
     <article>
       <p>A new object can inherit properties of an existing object.</p>
       <p>Example: Arrays inherit properties of the Array prototype object, such as <code>length</code></p>
+      <p>Another example:</p>
       <pre class="prettyprint" data-lang="javascript">
 var parent = {
     'name': "Alice",
@@ -725,6 +726,41 @@ map(square, [1, 2]);
 >> [1, 4]
 </pre>
       </div>
+    </article>
+  </slide>
+
+    <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Not exactly the same as JSON</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Object literals</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+var myArray = [1, 2, 3];
+
+var person = {
+    "firstName": "John",
+    "lastName":  "Smith",
+};
+
+var nestedExample = {
+    "firstName": "Jane",
+    "lastName":  "Smith",
+    "address": {
+        "country": "Australia",
+        "city":    "Sydney"
+    },
+    "greeting": function() {
+        console.log("Hello World!");
+    }
+}
+</pre>
     </article>
   </slide>
 

@@ -236,6 +236,14 @@ slides > slide {
   }
 }
 
+slide.games{
+  img, video{
+    width: 500px;
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+}
+
 slides.layout-faux-widescreen > slide {
   padding: $slide-top-bottom-padding 160px;
 }
@@ -972,7 +980,7 @@ h2[data-config-subtitle] {
       display: none !important;
     }
   }
-  
+
   slides {
     slide {
       &.backdrop {

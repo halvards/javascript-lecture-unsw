@@ -1,7 +1,7 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'JavaScript, properly',
+    title: 'Introduction to JavaScript',
     subtitle: '',
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
@@ -18,19 +18,15 @@ var SLIDE_CONFIG = {
 
   // Author information
   presenters: [{
-    name: 'Dr Halvard Skogsrud',
+    name: 'Halvard Skogsrud',
     company: 'ThoughtWorks',
-    email: 'halvard@skogsrud.com',
     twitter: '@halvards',
-    github: 'http://github.com/halvards'
-  }/*, {
-    name: 'Second Name',
-    company: 'Job Title, ThoughtWorks',
-    email: 'you@company.com',
-    gplus: 'http://plus.google.com/1234567890',
-    twitter: '@yourhandle',
-    www: 'http://www.you.com',
-    github: 'http://github.com/you'
-  }*/]
+    github: 'https://github.com/halvards'
+  }, {
+    name: 'Charlie Gerard',
+    company: 'ThoughtWorks',
+    twitter: '@charlie__gerard',
+    www: 'https://charliegerard.github.io/',
+    github: 'https://github.com/charliegerard'
+  }]
 };
-

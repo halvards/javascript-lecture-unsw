@@ -16,26 +16,26 @@
 </head>
 <body style="opacity: 0">
 
-<slides class="layout-widescreen">
-<!--<slides class="layout">-->
+<!-- <slides class="layout-widescreen"> -->
+<slides class="layout">
 
     <!-- <p>Add <code><a href="?presentme=true" target="_self">?presentme=true</a></code> to the URL to enabled presenter mode. -->
     <!-- This setting is sticky, meaning refreshing the page will persist presenter mode.</p> -->
     <!-- <p>Hit <code><a href="?presentme=false" target="_self">?presentme=false</a></code> to disable presenter mode.</p> -->
 
-  <slide class="logoslide nobackground">
+  <!-- <slide class="logoslide nobackground">
     <article class="flexbox vcenter">
       <span><img src="images/tw-bracketed-logo-color_617x200.png"></span>
     </article>
-  </slide>
+  </slide> -->
 
   <slide class="title-slide segue nobackground">
     <aside class="twbar"><img src="images/tw_brackets_color_128x128.png"></aside>
     <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
     <hgroup>
-      <h1 data-config-title><!-- populated from slide_config.json --></h1>
-      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
-      <p data-config-presenter><!-- populated from slide_config.json --></p>
+      <h1 data-config-title><!-- populated from slide_config.js --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.js --></h2>
+      <p data-config-presenter><!-- populated from slide_config.js --></p>
     </hgroup>
   </slide>
 
@@ -204,20 +204,40 @@
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Previously we had es3</li>
+          <li>We&#39;ll focus on es5 in this lecture</li>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
-      <h2>Today: es5</h2>
+      <h2>Today in the browser: es5</h2>
     </hgroup>
     <article class="flexbox vcenter">
-      <img src="images/ecmascript-5-standard-frontpage-683x383.png" alt="ECMAScript 5.1 Specification" style="width: 854px; height: 479px;">
+      <img src="images/ecmascript-5-standard-frontpage-683x383.png" alt="ECMAScript 5.1 Specification" style="width: 800px; height: 449px;">
+      <p><br><a href="http://www.ecma-international.org/ecma-262/5.1/">http://www.ecma-international.org/ecma-262/5.1/</a></p>
     </article>
   </slide>
 
   <slide>
     <hgroup>
-      <h2>Tomorrow: es6</h2>
+      <h2>Today on the server: es6</h2>
     </hgroup>
     <article class="flexbox vcenter">
-      <img src="images/ecmascript-6-draft-standard-frontpage-980x605.png" alt="ECMAScript 6 Draft Specification" style="width: 784px; height: 484px;">
+      <img src="images/ecmascript-6-standard-frontpage-1724x918.png" alt="ECMAScript 2015 Specification" style="width: 800px; height: 426px;">
+      <p><br><a href="http://www.ecma-international.org/ecma-262/6.0/">http://www.ecma-international.org/ecma-262/6.0/</a></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Tomorrow: es7</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/ecmascript-7-draft-1034x436.png" alt="ECMAScript 2016 Specification" style="width: 800px; height: 337px;">
+      <p><br><a href="http://tc39.github.io/ecma262/">http://tc39.github.io/ecma262/</a></p>
     </article>
   </slide>
 
@@ -381,8 +401,8 @@ var numbers = [ 'zero', 'one' ];
       <div>
         <p>Mutate:</p>
         <pre class="prettyprint" data-lang="javascript">
-numbers.push('two');   // numbers is now [ 'zero', 'one', 'two' ]
-numbers[0] = 'zilch';  // numbers is now [ 'zilch', 'one', 'two' ]
+numbers.push('two');   // [ 'zero', 'one', 'two' ]
+numbers[0] = 'zilch';  // [ 'zilch', 'one', 'two' ]
 </pre>
       </div>
       <div>
@@ -669,7 +689,7 @@ counter();
       <section>
         <ul>
           <li>I write better JavaScript code the more &quot;functional&quot; I make it.</li>
-          <li>It's a function expression</li>
+          <li>It&#39;s a function expression</li>
         </ul>
       </section>
     </aside>
@@ -688,6 +708,28 @@ var simpleFunction = function() {
       <p>And a function can return a function as output.</p>
       <pre class="prettyprint" data-lang="javascript">
 simpleFunction();  // prints "Hello World" to the console
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>What is printed to the console when we call createFunction()?</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Functions as return types</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function createFunction() {
+    return function() {
+        console.log("Hello World");
+    }
+}
 </pre>
     </article>
   </slide>
@@ -799,8 +841,38 @@ outer().inner();
     <aside class="note">
       <section>
         <ul>
+          <li>Not about food</li>
+          <li>Create a new function by supplying some arguments of an another function</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Currying</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function describe(adjective) {
+  return function(thing) {
+    console.log(thing + " is " + adjective);
+  }
+}
+
+var isAwesome = describe("awesome");
+var isEvenBetter = describe("even better");
+
+isAwesome("UNSW");
+isEvenBetter("ThoughtWorks");
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
           <li>No visibility modifiers in JavaScript, no public, private, etc.</li>
           <li>So how do we achieve encapsulation?</li>
+          <li>es6 introduces classes</li>
         </ul>
       </section>
     </aside>
@@ -1177,6 +1249,7 @@ $.ajax({
     <article>
       <p>Sample code</p>
       <pre class="prettyprint" data-lang="javascript">
+
   var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
 
   colors.on('track', function(event) {
@@ -1259,8 +1332,16 @@ $.ajax({
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Mozilla Developer Network</li>
+          <li>Don&#39;t use w3schools!</li>
+        </ul>
+      </section>
+    </aside>
     <article class="flexbox vcenter">
-      <img src="images/mozilla-developer-network-javascript-780x563.png" alt="Mozilla Developer Network: JavaScript" style="width: 780px; height: 563px;">
+      <img src="images/mozilla-developer-network-javascript-1336x894.png" alt="Mozilla Developer Network: JavaScript" style="width: 800px; height: 535px;">
     </article>
   </slide>
 
@@ -1288,7 +1369,8 @@ $.ajax({
     <article>
       <ul>
         <li>Douglas Crockford: <a href="http://shop.oreilly.com/product/9780596517748.do">JavaScript: The Good Parts</a>, O'Reilly</li>
-        <li>ECMA-262: <a href="http://www.ecma-international.org/ecma-262/5.1/">ECMAScript Language Specification, 5.1 Edition</a></li>
+        <li>es5: <a href="http://www.ecma-international.org/ecma-262/5.1/">ECMAScript Language Specification, 5.1 Edition</a></li>
+        <li>es6: <a href="http://www.ecma-international.org/ecma-262/6.0/">ECMAScript 2015 Language Specification</a></li>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Mozilla Developer Network: JavaScript</a></li>
         <li>Trevor Burnham: <a href="http://javascriptjabber.com/124-jsj-the-origin-of-javascript-with-brendan-eich/">The Origin of Javascript with Brendan Eich</a>, JavaScript Jabber, Episode 124, 3 Sept 2014</li>
         <li>Charles Severance: <a href="http://www.computer.org/csdl/mags/co/2012/02/mco2012020007.html">JavaScript: Designing a Language in 10 Days</a>, IEEE Computer, Feb 2012</li>
@@ -1297,7 +1379,14 @@ $.ajax({
     </article>
   </slide>
 
-  <slide class="fill nobackground" style="background-image: url(images/tw_levelup_oneslide-1024x768.png); background-size: 100%; background-repeat:no-repeat;"></slide>
+  <!-- <slide class="fill nobackground" style="background-image: url(images/tw_levelup_oneslide-1024x768.png); background-size: 100%; background-repeat:no-repeat;"></slide> -->
+
+  <slide>
+    <article class="flexbox vcenter">
+      <img src="images/tw_levelup-1244x814.png" alt="ThoughtWorks Level Up" style="width: 764px; height: 500px;">
+      <p><br><a href="http://levelup.thoughtworks.com/">http://levelup.thoughtworks.com/</a></p>
+    </article>
+  </slide>
 
   <slide class="logoslide nobackground">
     <article class="flexbox vcenter">

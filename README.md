@@ -10,3 +10,7 @@ Delivered on:
 Usage
 
 * Press `p` to toggle presenter notes
+* Press `w` to toggle widescreen mode
+* Press `h` to toggle code highlighting
+* Press `f` to toggle code full screen mode
+* Append `?presentme=true` to turn on presentation mode with two browser windows. If you navigate in the presenter's screen, the main slide screen will move along. This setting is sticky, to append `?presentme=false` to turn off.

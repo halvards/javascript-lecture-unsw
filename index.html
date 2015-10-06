@@ -133,6 +133,7 @@
       <p>Something awesome</p>
       <p>Something surprising</p>
       <p>Something bad</p>
+      <p>Something creative</p>
     </article>
   </slide>
 
@@ -147,6 +148,7 @@
       <p>Awesome: First class functions, Object literals, Closures</p>
       <p>Surprising: Scoping, Concurrency</p>
       <p>Bad: Global variables, Equals, and more</p>
+      <p>Creative: Visualisations, Games, Virtual reality, and more</p>
     </article>
   </slide>
 
@@ -1034,11 +1036,11 @@ var createEnemies = function(numRows, numCols) {
 var scene = new THREE.Scene();
 var renderer = new THREE.WebGLRenderer();
 var camera = new THREE.PerspectiveCamera(45,window.innerWidth /
-window.innerHeight , 0.1, 1170);
+        window.innerHeight , 0.1, 1170);
 camera.rotation.z = Math.PI;
 scene.add(camera);
 cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200 ),
-new THREE.MeshNormalMaterial() );
+        new THREE.MeshNormalMaterial() );
 scene.add(cube);
 renderer.render(scene, camera);
       </pre>
@@ -1076,11 +1078,11 @@ renderer.render(scene, camera);
 var scene = new THREE.Scene();
 var renderer = new THREE.WebGLRenderer();
 var camera = new THREE.PerspectiveCamera(45,window.innerWidth /
-window.innerHeight , 0.1, 1170);
+        window.innerHeight , 0.1, 1170);
 camera.rotation.z = Math.PI;
 scene.add(camera);
 cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200 ),
-new THREE.MeshNormalMaterial() );
+        new THREE.MeshNormalMaterial() );
 scene.add(cube);
 effect = new THREE.StereoEffect(renderer);
 effect.render(scene, camera);

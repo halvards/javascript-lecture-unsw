@@ -207,6 +207,7 @@
     <aside class="note">
       <section>
         <ul>
+          <li>Previously we had es3</li>
           <li>We&#39;ll focus on es5 in this lecture</li>
         </ul>
       </section>
@@ -216,6 +217,7 @@
     </hgroup>
     <article class="flexbox vcenter">
       <img src="images/ecmascript-5-standard-frontpage-683x383.png" alt="ECMAScript 5.1 Specification" style="width: 800px; height: 449px;">
+      <p><br><a href="http://www.ecma-international.org/ecma-262/5.1/">http://www.ecma-international.org/ecma-262/5.1/</a></p>
     </article>
   </slide>
 
@@ -225,6 +227,7 @@
     </hgroup>
     <article class="flexbox vcenter">
       <img src="images/ecmascript-6-standard-frontpage-1724x918.png" alt="ECMAScript 2015 Specification" style="width: 800px; height: 426px;">
+      <p><br><a href="http://www.ecma-international.org/ecma-262/6.0/">http://www.ecma-international.org/ecma-262/6.0/</a></p>
     </article>
   </slide>
 
@@ -234,6 +237,7 @@
     </hgroup>
     <article class="flexbox vcenter">
       <img src="images/ecmascript-7-draft-1034x436.png" alt="ECMAScript 2016 Specification" style="width: 800px; height: 337px;">
+      <p><br><a href="http://tc39.github.io/ecma262/">http://tc39.github.io/ecma262/</a></p>
     </article>
   </slide>
 
@@ -397,8 +401,8 @@ var numbers = [ 'zero', 'one' ];
       <div>
         <p>Mutate:</p>
         <pre class="prettyprint" data-lang="javascript">
-numbers.push('two');   // numbers is now [ 'zero', 'one', 'two' ]
-numbers[0] = 'zilch';  // numbers is now [ 'zilch', 'one', 'two' ]
+numbers.push('two');   // [ 'zero', 'one', 'two' ]
+numbers[0] = 'zilch';  // [ 'zilch', 'one', 'two' ]
 </pre>
       </div>
       <div>
@@ -685,7 +689,7 @@ counter();
       <section>
         <ul>
           <li>I write better JavaScript code the more &quot;functional&quot; I make it.</li>
-          <li>It's a function expression</li>
+          <li>It&#39;s a function expression</li>
         </ul>
       </section>
     </aside>
@@ -704,6 +708,57 @@ var simpleFunction = function() {
       <p>And a function can return a function as output.</p>
       <pre class="prettyprint" data-lang="javascript">
 simpleFunction();  // prints "Hello World" to the console
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>What is printed to the console when we call createFunction()?</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Functions as return types</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function createFunction() {
+    return function() {
+        console.log("Hello World");
+    }
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Not about food</li>
+          <li>Create a new function by supplying some arguments of an another function</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Currying</h2>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="javascript">
+function describe(adjective) {
+  return function(thing) {
+    console.log(thing + " is " + adjective);
+  }
+}
+
+var isAwesome = describe("awesome");
+var isEvenBetter = describe("even better");
+
+isAwesome("UNSW");
+isEvenBetter("ThoughtWorks");
 </pre>
     </article>
   </slide>
@@ -817,6 +872,7 @@ outer().inner();
         <ul>
           <li>No visibility modifiers in JavaScript, no public, private, etc.</li>
           <li>So how do we achieve encapsulation?</li>
+          <li>es6 introduces classes</li>
         </ul>
       </section>
     </aside>

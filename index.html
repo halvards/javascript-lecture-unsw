@@ -1006,8 +1006,8 @@ var createEnemies = function(numRows, numCols) {
     <aside class="note">
       <section>
         <ul>
-          <a href="http://hexgl.bkcore.com/play/">HexGL</a>
-          <a href="https://www.google.com/logos/2014/rubiks/iframe/index.html">Rubiks Cube</a>
+          <a href="http://hexgl.bkcore.com/play/">HexGL</a></br>
+          <a href="https://www.google.com/logos/2014/rubiks/iframe/index.html">Rubiks Cube</a></br>
           <a href="https://www.chrome.com/racer">Chrome Racer</a>
         </ul>
       </section>
@@ -1018,7 +1018,7 @@ var createEnemies = function(numRows, numCols) {
     <article>
       <p>More advanced ones...</p>
       <img src="http://i.ytimg.com/vi/se-oorr2zM8/maxresdefault.jpg">
-      <a href="http://hexgl.bkcore.com/">HexGL</a>
+      <p>HexGL</p>
       <p>Made with the Three.js framework</p>
     </article>
   </slide>
@@ -1032,10 +1032,12 @@ var createEnemies = function(numRows, numCols) {
       <pre class="prettyprint" data-lang="javascript">
 var scene = new THREE.Scene();
 var renderer = new THREE.WebGLRenderer();
-var camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight , 0.1, 1170);
+var camera = new THREE.PerspectiveCamera(45,window.innerWidth /
+window.innerHeight , 0.1, 1170);
 camera.rotation.z = Math.PI;
 scene.add(camera);
-cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200 ), new THREE.MeshNormalMaterial() );
+cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200 ),
+new THREE.MeshNormalMaterial() );
 scene.add(cube);
 renderer.render(scene, camera);
       </pre>
@@ -1046,7 +1048,8 @@ renderer.render(scene, camera);
     <aside class="note">
       <section>
         <ul>
-          <a href="http://mozvr.com/">MozVR</a>
+          <a href="https://github.com/richtr/threeVR">ThreeVR</a></br>
+          <a href="http://mozvr.com/">MozVR</a></br>
           <a href="https://vr.chromeexperiments.com/">Chrome VR experiments</a>
         </ul>
       </section>
@@ -1071,10 +1074,12 @@ renderer.render(scene, camera);
       <pre class="prettyprint" data-lang="javascript">
 var scene = new THREE.Scene();
 var renderer = new THREE.WebGLRenderer();
-var camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight , 0.1, 1170);
+var camera = new THREE.PerspectiveCamera(45,window.innerWidth /
+window.innerHeight , 0.1, 1170);
 camera.rotation.z = Math.PI;
 scene.add(camera);
-cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200 ), new THREE.MeshNormalMaterial() );
+cube = new THREE.Mesh( new THREE.CubeGeometry( 200, 200, 200 ),
+new THREE.MeshNormalMaterial() );
 scene.add(cube);
 effect = new THREE.StereoEffect(renderer);
 effect.render(scene, camera);
@@ -1083,6 +1088,13 @@ effect.render(scene, camera);
   </slide>
 
   <slide class="games">
+    <aside class="note">
+      <section>
+        <ul>
+          <a href="https://developer.leapmotion.com/leapjs/examples/dom-visualizer.html">Leap Motion Visualizer</a>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
       <h2>Visualizations</h2>
     </hgroup>
@@ -1121,9 +1133,9 @@ effect.render(scene, camera);
     <aside class="note">
       <section>
         <ul>
-          <a href="http://nbremer.github.io/exoplanets/">Exoplanets visualizer</a>
-          <a href="http://fatiherikli.github.io/programming-language-network/#language:Objective-C">Programming languages network</a>
-          <a href="http://d3shooter.herokuapp.com/">Game with d3</a>
+          <a href="http://nbremer.github.io/exoplanets/">Exoplanets visualizer</a></br>
+          <a href="http://fatiherikli.github.io/programming-language-network/#language:Objective-C">Programming languages network</a></br>
+          <a href="http://d3shooter.herokuapp.com/">Game with d3</a></br>
           <a href="http://www.therefugeeproject.org/#/2012">The refugee project</a>
         </ul>
       </section>
@@ -1149,8 +1161,8 @@ d3.json("flare.json", function(root) {
       .data(bubble.nodes(classes(root))
       .filter(function(d) { return !d.children; }))
     .enter().append("g")
-      .attr("class", "node")
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+      .attr("transform", function(d) { return "translate(" + d.x +
+      "," + d.y + ")"; });
 
   node.append("title")
       .text(function(d) { return d.className + ": " + format(d.value); });
@@ -1167,9 +1179,10 @@ d3.json("flare.json", function(root) {
     <aside class="note">
       <section>
         <ul>
-          <a href="http://cwacht.github.io/nyancat/">NyanCat</a>
-          <a href="http://www.dilladimension.com/">The Dilla Dimension</a>
-          <a href="http://www.georgeandjonathan.com/">Music visualizer></a>
+          <a href="http://www.dennis.video/">Dennis Video</a>
+          <a href="http://cwacht.github.io/nyancat/">NyanCat</a></br>
+          <a href="http://www.dilladimension.com/">The Dilla Dimension</a></br>
+          <a href="http://www.georgeandjonathan.com/">Music visualizer</a>
         </ul>
       </section>
     </aside>
@@ -1186,7 +1199,7 @@ d3.json("flare.json", function(root) {
     <aside class="note">
       <section>
         <ul>
-          <a href="http://wit.ai">Wit.ai</a>
+          <a href="http://wit.ai">Wit.ai</a></br>
           <a href="https://labs.wit.ai/demo/index.html">Wit.ai interactive demo</a>
         </ul>
       </section>
@@ -1228,7 +1241,7 @@ $.ajax({
     <aside class="note">
       <section>
         <ul>
-          <a href="http://trackingjs.com/">Tracking.js</a>
+          <a href="http://trackingjs.com/">Tracking.js</a></br>
           <a href="http://trackingjs.com/examples/face_camera.html">Face tracking</a>
         </ul>
       </section>
@@ -1250,17 +1263,17 @@ $.ajax({
       <p>Sample code</p>
       <pre class="prettyprint" data-lang="javascript">
 
-  var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
 
-  colors.on('track', function(event) {
-    if (event.data.length === 0) {
-      // No colors were detected in this frame.
-    } else {
-      event.data.forEach(function(rect) {
-        console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
-      });
-    }
-  });
+colors.on('track', function(event) {
+  if (event.data.length === 0) {
+    // No colors were detected in this frame.
+  } else {
+    event.data.forEach(function(rect) {
+      console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
+    });
+  }
+});
 
   tracking.track('#myVideo', colors);
       </pre>

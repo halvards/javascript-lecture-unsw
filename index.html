@@ -688,36 +688,6 @@ outer().inner();
     <aside class="note">
       <section>
         <ul>
-          <li>Not about food</li>
-          <li>Create a new function by supplying some arguments of an another function</li>
-        </ul>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Currying</h2>
-    </hgroup>
-    <article>
-      <p>Create a new function by supplying some arguments of an another function.</p>
-      <pre class="prettyprint" data-lang="javascript">
-function describe(adjective) {
-  return function(thing) {
-    console.log(thing + " is " + adjective);
-  }
-}
-
-var isAwesome = describe("awesome");
-var isEvenBetter = describe("even better");
-
-isAwesome("UNSW");
-isEvenBetter("ThoughtWorks");
-</pre>
-    </article>
-  </slide>
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
           <li>No visibility modifiers in JavaScript, no public, private, etc.</li>
           <li>So how do we achieve encapsulation?</li>
           <li>es6 introduces classes</li>
@@ -745,6 +715,36 @@ var counter = function() {
 var myCounter = counter();  // create an instance
 </pre>
       <p>Encapsulation: <code>value</code> can't be directly manipulated.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Not about food</li>
+          <li>Create a new function by supplying some arguments of an another function</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Currying</h2>
+    </hgroup>
+    <article>
+      <p>Create a new function by supplying some arguments of an another function.</p>
+      <pre class="prettyprint" data-lang="javascript">
+function describe(adjective) {
+  return function(thing) {
+    console.log(thing + " is " + adjective);
+  }
+}
+
+var isAwesome = describe("awesome");
+var isEvenBetter = describe("even better");
+
+isAwesome("UNSW");
+isEvenBetter("ThoughtWorks");
+</pre>
     </article>
   </slide>
 

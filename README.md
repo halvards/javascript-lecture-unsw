@@ -6,7 +6,7 @@ Delivered on:
 * Tuesday 15 October 2013
 * Tuesday 23 September 2014
 * Wednesday 7 October 2015, with [Charlie Gerard](https://github.com/charliegerard)
-* Thursday 22 September 2016
+* Thursday 22 September 2016, see [other repository](https://github.com/halvards/javascript-lecture-unsw-2016)
 
 Usage
 
